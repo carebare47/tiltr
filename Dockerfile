@@ -65,12 +65,10 @@ RUN set +x && \
     cd arduino-1.8.9 && \
     sudo ./install.sh && \
     cd ~/Arduino/libraries && \
-    git clone https://github.com/bipropellant/bipropellant-hoverboard-api && \
-    git clone https://github.com/br3ttb/Arduino-PID-Library && \
-    git clone https://github.com/JonHub/Filters.git && \
-
-
-
+    wget https://raw.githubusercontent.com/tiltr/tiltr-firmware/master/libraries && \
+    while read repo; do git clone "$repo"; done < libraries && \
+    cd ~/Arduino && \
+    git clone https://github.com/tiltr/tiltr-firmware && \
 
 
 USER root
