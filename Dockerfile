@@ -58,6 +58,21 @@ RUN set +x && \
     echo "Adding user to dialout group..." && \
     sudo usermod -a -G dialout $MY_USERNAME
 
+RUN set +x && \        
+    cd ~/ && wget https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-linux64.tar.xz && \
+    tar -xJf arduino-1.8.9-linux64.tar.xz && \
+    rm arduino-1.8.9-linux64.tar.xz && \
+    cd arduino-1.8.9 && \
+    sudo ./install.sh && \
+    cd ~/Arduino/libraries && \
+    git clone https://github.com/bipropellant/bipropellant-hoverboard-api && \
+    git clone https://github.com/br3ttb/Arduino-PID-Library && \
+    git clone https://github.com/JonHub/Filters.git && \
+
+
+
+
+
 USER root
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
